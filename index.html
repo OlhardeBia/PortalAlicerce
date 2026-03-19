@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produto Alicerce</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Paleta Olhar de Bia */
+    --laranja:     #F48028;
+    --laranja-esc: #B85A10;
+    --laranja-clr: #FEF0E4;
+    --teal:        #0CC1BC;
+    --teal-esc:    #087A77;
+    --teal-clr:    #E0F9F8;
+    --amarelo:     #FEED0D;
+    --amarelo-esc: #C4B800;
+    --amarelo-clr: #FFFDE6;
+
+    /* Aliases funcionais */
+    --verde:      #0CC1BC;
+    --verde-esc:  #1A3A38;
+    --verde-clr:  #E0F9F8;
+    --roxo:       #F48028;
+    --roxo-clr:   #FEF0E4;
+    --amber:      #C4B800;
+    --amber-clr:  #FFFDE6;
+
+    /* Neutros */
+    --cinza-esc:  #1E1E1E;
+    --cinza-med:  #5A5A5A;
+    --cinza-clr:  #F4F4F2;
+    --borda:      #E0DED8;
+    --branco:     #FFFFFF;
+    --bg:         #FAFAF8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--cinza-esc);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--cinza-esc);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    border-bottom: 3px solid var(--laranja);
+  }
+
+  .logo {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    color: var(--branco);
+    letter-spacing: -0.01em;
+  }
+  .logo span { color: var(--amarelo); }
+
+  .progresso-geral {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .progresso-geral-bar {
+    width: 120px;
+    height: 5px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progresso-geral-fill {
+    height: 100%;
+    background: var(--laranja);
+    border-radius: 99px;
+    transition: width 0.6s ease;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--cinza-esc);
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 60%, rgba(12,193,188,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(244,128,40,0.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(254,237,13,0.15);
+    border: 1px solid rgba(254,237,13,0.4);
+    color: var(--amarelo);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 99px;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 900;
+    color: var(--branco);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.8rem;
+  }
+  .hero h1 em { color: var(--teal); font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--laranja);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  /* ── MÓDULO CARDS ── */
+  .secao-titulo {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cinza-med);
+    margin-bottom: 1.2rem;
+  }
+
+  .modulos-grid {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .modulo-card {
+    background: var(--branco);
+    border: 1.5px solid var(--borda);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .modulo-card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+    border-color: var(--laranja);
+  }
+  .modulo-card.ativo {
+    border-color: var(--laranja);
+    box-shadow: 0 0 0 3px rgba(244,128,40,0.12);
+  }
+
+  .modulo-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    position: relative;
+  }
+  .modulo-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .modulo-info { flex: 1; min-width: 0; }
+  .modulo-nome {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--cinza-esc);
+    line-height: 1.3;
+  }
+  .modulo-sub {
+    font-size: 0.78rem;
+    color: var(--cinza-med);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+  .modulo-progresso {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  .modulo-progresso-label {
+    font-size: 0.7rem;
+    color: var(--cinza-med);
+    font-weight: 500;
+  }
+  .modulo-progresso-bar {
+    width: 80px;
+    height: 4px;
+    background: var(--cinza-clr);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .modulo-progresso-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.5s ease;
+  }
+  .chevron {
+    font-size: 1rem;
+    color: var(--cinza-med);
+    transition: transform 0.25s;
+    margin-left: 0.5rem;
+    flex-shrink: 0;
+  }
+  .modulo-card.aberto .chevron { transform: rotate(180deg); }
+
+  /* Episódios dentro do card */
+  .episodios-lista {
+    display: none;
+    border-top: 1px solid var(--borda);
+    padding: 0.5rem 0;
+    background: var(--bg);
+  }
+  .modulo-card.aberto .episodios-lista { display: block; }
+
+  .ep-item {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 8px;
+    margin: 2px 0.5rem;
+  }
+  .ep-item:hover { background: var(--laranja-clr); }
+  .ep-item.ativo { background: var(--laranja-clr); }
+
+  .ep-check {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid var(--borda);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    font-size: 0.7rem;
+    color: transparent;
+  }
+  .ep-item.concluido .ep-check {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: var(--branco);
+  }
+  .ep-item.ativo .ep-check {
+    border-color: var(--laranja);
+  }
+
+  .ep-info { flex: 1; min-width: 0; }
+  .ep-titulo {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--cinza-esc);
+    line-height: 1.3;
+  }
+  .ep-item.concluido .ep-titulo { color: var(--cinza-med); }
+  .ep-meta {
+    font-size: 0.72rem;
+    color: var(--cinza-med);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+  .ep-play {
+    font-size: 1.1rem;
+    color: var(--laranja);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .ep-item:hover .ep-play, .ep-item.ativo .ep-play { opacity: 1; }
+
+  /* ── PLAYER AREA ── */
+  .player-area {
+    background: var(--branco);
+    border: 1.5px solid var(--borda);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .player-vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+    gap: 1rem;
+    color: var(--cinza-med);
+  }
+  .player-vazio-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--teal-clr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+  }
+  .player-vazio h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--cinza-esc);
+  }
+  .player-vazio p { font-size: 0.85rem; font-weight: 300; max-width: 280px; }
+
+  .player-ativo { display: none; }
+  .player-ativo.visivel { display: block; }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    background: #000;
+  }
+  .video-wrapper iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .player-info {
+    padding: 1.5rem;
+    border-top: 1px solid var(--borda);
+  }
+  .player-ep-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.4rem;
+  }
+  .player-ep-titulo {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--cinza-esc);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  .player-ep-desc {
+    font-size: 0.85rem;
+    color: var(--cinza-med);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+
+  .player-acoes {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 9px 18px;
+    border-radius: 99px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--laranja);
+    color: var(--branco);
+  }
+  .btn-primary:hover { background: var(--laranja-esc); }
+  .btn-primary:disabled { background: var(--borda); color: var(--cinza-med); cursor: default; }
+  .btn-secondary {
+    background: var(--cinza-clr);
+    color: var(--cinza-esc);
+    border: 1.5px solid var(--borda);
+  }
+  .btn-secondary:hover { border-color: var(--verde); color: var(--verde); }
+
+  .desafio-box {
+    background: var(--teal-clr);
+    border-left: 4px solid var(--teal);
+    border-radius: 0 12px 12px 0;
+    padding: 1rem 1.2rem;
+    margin-top: 1.2rem;
+  }
+  .desafio-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.35rem;
+  }
+  .desafio-texto {
+    font-size: 0.88rem;
+    color: var(--teal-esc);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* ── RESPONSIVO ── */
+  @media (min-width: 768px) {
+    .layout-dois {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .hero { padding: 4.5rem 2rem 4rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-stats { gap: 1.5rem; }
+    .modulo-progresso-bar { width: 55px; }
+    .progresso-geral-bar { width: 80px; }
+  }
+
+  /* ── NAVEGAÇÃO POR ABAS ── */
+  .nav-abas {
+    display: flex;
+    gap: 0;
+    background: var(--branco);
+    border-bottom: 1.5px solid var(--borda);
+    padding: 0 2rem;
+    position: sticky;
+    top: 56px;
+    z-index: 90;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .nav-aba {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 14px 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--cinza-med);
+    border-bottom: 2.5px solid transparent;
+    margin-bottom: -1.5px;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .nav-aba:hover { color: var(--cinza-esc); }
+  .nav-aba.ativa { color: var(--laranja); border-bottom-color: var(--laranja); }
+  .nav-aba .aba-icon { font-size: 1rem; }
+
+  /* ── SEÇÃO TRECHOS ── */
+  .secao-trechos { display: none; }
+  .secao-trechos.visivel { display: block; }
+  .secao-trilha { display: block; }
+  .secao-trilha.oculta { display: none; }
+
+  .trechos-layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .trechos-layout { grid-template-columns: 380px 1fr; align-items: start; }
+  }
+
+  .feed-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 82vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--borda) transparent;
+    padding-right: 4px;
+  }
+  .feed-scroll::-webkit-scrollbar { width: 4px; }
+  .feed-scroll::-webkit-scrollbar-track { background: transparent; }
+  .feed-scroll::-webkit-scrollbar-thumb { background: var(--borda); border-radius: 99px; }
+
+  .trecho-card {
+    scroll-snap-align: start;
+    background: var(--branco);
+    border: 1.5px solid var(--borda);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    flex-shrink: 0;
+  }
+  .trecho-card:hover { border-color: var(--laranja); box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
+  .trecho-card.ativo { border-color: var(--laranja); box-shadow: 0 0 0 3px rgba(244,128,40,0.12); }
+
+  .trecho-thumb {
+    position: relative;
+    background: var(--cinza-esc);
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .trecho-thumb-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; opacity: 0.12; }
+  .trecho-play-btn {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.92);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; color: var(--verde-esc);
+    position: relative; z-index: 1;
+    transition: transform 0.15s;
+  }
+  .trecho-card:hover .trecho-play-btn { transform: scale(1.1); }
+  .trecho-card.ativo .trecho-play-btn { background: var(--laranja); color: var(--branco); }
+  .trecho-dur {
+    position: absolute; bottom: 8px; right: 10px;
+    background: rgba(0,0,0,0.7); color: var(--branco);
+    font-size: 0.68rem; font-weight: 500;
+    padding: 2px 7px; border-radius: 4px; z-index: 1;
+  }
+  .trecho-meta { padding: 10px 14px 12px; }
+  .trecho-modulo-tag {
+    display: inline-block;
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 99px; margin-bottom: 5px;
+  }
+  .trecho-titulo { font-family: 'Nunito', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--cinza-esc); line-height: 1.35; margin-bottom: 3px; }
+  .trecho-desc { font-size: 0.75rem; color: var(--cinza-med); font-weight: 300; line-height: 1.4; }
+
+  .trecho-player-area { position: sticky; top: calc(56px + 48px + 1.5rem); }
+  .trecho-player-box { background: var(--branco); border: 1.5px solid var(--borda); border-radius: 20px; overflow: hidden; }
+  .trecho-player-vazio {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 3.5rem 1.5rem; text-align: center; gap: 0.8rem; color: var(--cinza-med);
+  }
+  .trecho-player-vazio-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--teal-clr); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+  .trecho-player-vazio h3 { font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--cinza-esc); }
+  .trecho-player-vazio p { font-size: 0.8rem; font-weight: 300; max-width: 240px; line-height: 1.5; }
+  .trecho-player-ativo { display: none; }
+  .trecho-player-ativo.visivel { display: block; }
+  .trecho-info-box { padding: 1.2rem 1.4rem; border-top: 1px solid var(--borda); }
+  .trecho-info-modulo { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .trecho-info-titulo { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; color: var(--cinza-esc); line-height: 1.3; margin-bottom: 0.4rem; }
+  .trecho-info-desc { font-size: 0.82rem; color: var(--cinza-med); font-weight: 300; line-height: 1.5; margin-bottom: 1rem; }
+  .trecho-cta { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+  /* ── ANIMAÇÕES ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .modulo-card { animation: fadeUp 0.4s ease both; }
+  .modulo-card:nth-child(1) { animation-delay: 0.05s; }
+  .modulo-card:nth-child(2) { animation-delay: 0.10s; }
+  .modulo-card:nth-child(3) { animation-delay: 0.15s; }
+  .modulo-card:nth-child(4) { animation-delay: 0.20s; }
+
+  /* Toast de conclusão */
+  .toast {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--cinza-esc);
+    color: var(--amarelo);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 99px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 999;
+    white-space: nowrap;
+  }
+  .toast.visivel { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Olhar de Bia <span>·</span> Alicerce</div>
+  <div class="progresso-geral">
+    <span id="txt-progresso">0 de 16 episódios</span>
+    <div class="progresso-geral-bar">
+      <div class="progresso-geral-fill" id="fill-geral" style="width:0%"></div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Olhar de Bia · 15–20 min por episódio</div>
+  <h1>Seu próximo passo<br>começa <em>aqui</em></h1>
+  <p>Conteúdo pra você que quer entender pra onde ir e como chegar lá.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Módulos</div></div>
+    <div class="stat"><div class="stat-num">16</div><div class="stat-label">Episódios</div></div>
+    <div class="stat"><div class="stat-num">15–20</div><div class="stat-label">Min por ep</div></div>
+  </div>
+</div>
+
+<!-- ABAS DE NAVEGAÇÃO -->
+<nav class="nav-abas">
+  <button class="nav-aba ativa" id="aba-trilha" onclick="mudarAba('trilha')">
+    <span class="aba-icon">📚</span> Trilha
+  </button>
+  <button class="nav-aba" id="aba-trechos" onclick="mudarAba('trechos')">
+    <span class="aba-icon">▶</span> Trechos
+  </button>
+</nav>
+
+<!-- SEÇÃO TRECHOS -->
+<div class="secao-trechos" id="secao-trechos">
+  <div class="trechos-layout">
+    <!-- Feed scroll -->
+    <div>
+      <p class="secao-titulo" style="margin-bottom:1rem">Trechos dos episódios</p>
+      <div class="feed-scroll" id="feed-scroll">
+        <!-- gerado por JS -->
+      </div>
+    </div>
+    <!-- Player -->
+    <div class="trecho-player-area">
+      <p class="secao-titulo" style="margin-bottom:1rem">Assistindo agora</p>
+      <div class="trecho-player-box">
+        <div class="trecho-player-vazio" id="trecho-player-vazio">
+          <div class="trecho-player-vazio-icon">▶</div>
+          <h3>Selecione um trecho</h3>
+          <p>Clique em qualquer card ao lado para reproduzir o trecho.</p>
+        </div>
+        <div class="trecho-player-ativo" id="trecho-player-ativo">
+          <div class="video-wrapper">
+            <iframe id="trecho-iframe" src="" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+          </div>
+          <div class="trecho-info-box">
+            <div class="trecho-info-modulo" id="trecho-info-modulo"></div>
+            <div class="trecho-info-titulo" id="trecho-info-titulo"></div>
+            <div class="trecho-info-desc" id="trecho-info-desc"></div>
+            <div class="trecho-cta">
+              <button class="btn btn-primary" id="btn-ver-ep">Ver episódio completo →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="secao-trilha" id="secao-trilha">
+<div class="container">
+  <div class="layout-dois">
+
+    <!-- COLUNA ESQUERDA: Módulos -->
+    <div>
+      <p class="secao-titulo">Trilha de aprendizado</p>
+      <div class="modulos-grid" id="modulos-grid">
+        <!-- gerado por JS -->
+      </div>
+    </div>
+
+    <!-- COLUNA DIREITA: Player -->
+    <div>
+      <p class="secao-titulo">Assistindo agora</p>
+      <div class="player-area">
+        <div class="player-vazio" id="player-vazio">
+          <div class="player-vazio-icon">▶</div>
+          <h3>Escolha um episódio</h3>
+          <p>Selecione um módulo ao lado e clique em qualquer episódio para começar.</p>
+        </div>
+        <div class="player-ativo" id="player-ativo">
+          <div class="video-wrapper">
+            <iframe id="yt-iframe" src="" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+          </div>
+          <div class="player-info">
+            <div class="player-ep-label" id="player-label"></div>
+            <div class="player-ep-titulo" id="player-titulo"></div>
+            <div class="player-ep-desc" id="player-desc"></div>
+            <div class="desafio-box">
+              <div class="desafio-label">Desafio do episódio</div>
+              <div class="desafio-texto" id="player-desafio"></div>
+            </div>
+            <div class="player-acoes" style="margin-top:1.2rem">
+              <button class="btn btn-primary" id="btn-concluir">✓ Marcar como concluído</button>
+              <button class="btn btn-secondary" id="btn-proximo">Próximo episódio →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Episódio concluído!</div>
+
+<script>
+// ── DADOS DOS TRECHOS ──
+// Cada trecho tem: id, titulo, desc, dur (duração ex: "1:45"), modId (referência ao módulo), epId (referência ao episódio completo), yt (ID do YouTube Shorts/vídeo curto), cor e emoji do módulo
+const TRECHOS = [
+  { id:"t1", titulo:"Por que você não consegue começar?", desc:"Trecho do Ep 1 — o mito da motivação explicado em 2 minutos.", dur:"2:10", modId:"m1", epId:"m1e1", yt:"", cor:"#0CC1BC", corClr:"#E0F9F8", emoji:"💪" },
+  { id:"t2", titulo:"Ação gera motivação — não o contrário", desc:"Trecho do Ep 1 — a inversão que muda tudo.", dur:"1:45", modId:"m1", epId:"m1e1", yt:"", cor:"#0CC1BC", corClr:"#E0F9F8", emoji:"💪" },
+  { id:"t3", titulo:"O que fazer quando você trava no meio?", desc:"Trecho do Ep 2 — decisão vs espera.", dur:"2:30", modId:"m1", epId:"m1e2", yt:"", cor:"#0CC1BC", corClr:"#E0F9F8", emoji:"💪" },
+  { id:"t4", titulo:"Comparação produtiva vs paralisante", desc:"Trecho do Ep 3 — como usar o que você vê nas redes a seu favor.", dur:"1:55", modId:"m1", epId:"m1e3", yt:"", cor:"#0CC1BC", corClr:"#E0F9F8", emoji:"💪" },
+  { id:"t5", titulo:"Profissões que você nunca considerou", desc:"Trecho do Ep 1 M2 — expandindo o mapa de possibilidades.", dur:"2:20", modId:"m2", epId:"m2e1", yt:"", cor:"#F48028", corClr:"#FEF0E4", emoji:"🗺️" },
+  { id:"t6", titulo:"Como testar uma carreira em 1 semana", desc:"Trecho do Ep 3 M2 — explorar sem se comprometer.", dur:"1:50", modId:"m2", epId:"m2e3", yt:"", cor:"#F48028", corClr:"#FEF0E4", emoji:"🗺️" },
+  { id:"t7", titulo:"O que você faz sem ninguém pedir?", desc:"Trecho do Ep 1 M3 — identificando energias naturais.", dur:"2:05", modId:"m3", epId:"m3e1", yt:"", cor:"#C4B800", corClr:"#FFFDE6", emoji:"🪞" },
+  { id:"t8", titulo:"O menor passo possível — e por que funciona", desc:"Trecho do Ep 1 M4 — ação mínima viável na prática.", dur:"1:40", modId:"m4", epId:"m4e1", yt:"", cor:"#087A77", corClr:"#E0F9F8", emoji:"🚀" },
+];
+
+// ── NAVEGAÇÃO POR ABAS ──
+function mudarAba(aba) {
+  const trilha   = document.getElementById("secao-trilha");
+  const trechos  = document.getElementById("secao-trechos");
+  const btnTrilha = document.getElementById("aba-trilha");
+  const btnTrechos = document.getElementById("aba-trechos");
+
+  if (aba === "trilha") {
+    trilha.classList.remove("oculta");
+    trechos.classList.remove("visivel");
+    btnTrilha.classList.add("ativa");
+    btnTrechos.classList.remove("ativa");
+  } else {
+    trilha.classList.add("oculta");
+    trechos.classList.add("visivel");
+    btnTrilha.classList.remove("ativa");
+    btnTrechos.classList.add("ativa");
+    renderTrechos();
+  }
+}
+
+// ── RENDER FEED DE TRECHOS ──
+let trechoAtual = null;
+
+function renderTrechos() {
+  const feed = document.getElementById("feed-scroll");
+  if (feed.dataset.renderizado === "1") return;
+  feed.dataset.renderizado = "1";
+  feed.innerHTML = "";
+
+  TRECHOS.forEach(t => {
+    const modNome = MODULOS.find(m => m.id === t.modId)?.nome || "";
+    const card = document.createElement("div");
+    card.className = "trecho-card";
+    card.id = "tcard-" + t.id;
+    card.onclick = () => abrirTrecho(t.id);
+    card.innerHTML = `
+      <div class="trecho-thumb" style="background:${t.cor}22">
+        <div class="trecho-thumb-bg">${t.emoji}</div>
+        <div class="trecho-play-btn">▶</div>
+        <div class="trecho-dur">${t.dur}</div>
+      </div>
+      <div class="trecho-meta">
+        <div class="trecho-modulo-tag" style="background:${t.corClr};color:${t.cor}">${modNome}</div>
+        <div class="trecho-titulo">${t.titulo}</div>
+        <div class="trecho-desc">${t.desc}</div>
+      </div>
+    `;
+    feed.appendChild(card);
+  });
+}
+
+function abrirTrecho(id) {
+  const t = TRECHOS.find(x => x.id === id);
+  if (!t) return;
+  trechoAtual = t;
+
+  // Destacar card ativo
+  document.querySelectorAll(".trecho-card").forEach(c => c.classList.remove("ativo"));
+  document.getElementById("tcard-" + id)?.classList.add("ativo");
+
+  // Player
+  const iframe = document.getElementById("trecho-iframe");
+  iframe.src = t.yt
+    ? `https://www.youtube.com/embed/${t.yt}?rel=0&modestbranding=1&autoplay=1`
+    : "about:blank";
+
+  const modNome = MODULOS.find(m => m.id === t.modId)?.nome || "";
+  const el = document.getElementById("trecho-info-modulo");
+  el.textContent = modNome;
+  el.style.color = t.cor;
+  document.getElementById("trecho-info-titulo").textContent = t.titulo;
+  document.getElementById("trecho-info-desc").textContent = t.desc;
+
+  // Botão ver episódio completo
+  document.getElementById("btn-ver-ep").onclick = () => {
+    mudarAba("trilha");
+    setTimeout(() => abrirEpisodio(t.modId, t.epId), 100);
+  };
+
+  document.getElementById("trecho-player-vazio").style.display = "none";
+  const pa = document.getElementById("trecho-player-ativo");
+  pa.style.display = "block";
+  pa.classList.add("visivel");
+
+  // Scroll para player em mobile
+  if (window.innerWidth < 768) {
+    document.querySelector(".trecho-player-box").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+// ── DADOS DOS MÓDULOS ──
+// Para usar com vídeos reais: substitua o campo "yt" pelo ID do vídeo do YouTube
+// Ex: "yt": "dQw4w9WgXcQ"  →  https://www.youtube.com/watch?v=dQw4w9WgXcQ
+const MODULOS = [
+  {
+    id: "m1",
+    nome: "Como me mantenho?",
+    sub: "Módulo 1 · Motivação e persistência",
+    cor: "#0CC1BC",
+    corClr: "#E0F9F8",
+    eps: [
+      { id:"m1e1", titulo:"Você não precisa estar motivado para começar", dur:"~18 min", desc:"Desmonta o mito de que motivação precede ação. Apresenta o conceito de ação geradora de motivação e o efeito Zeigarnik.", desafio:"Escolha uma coisa que você está adiando e faça o menor passo possível em direção a ela — hoje, antes de dormir.", yt:"" },
+      { id:"m1e2", titulo:"O que fazer quando tudo parece travado", dur:"~16 min", desc:"Aborda o estado de paralisia e a distinção entre problemas que exigem decisão e situações que exigem espera.", desafio:"Identifique uma coisa que está travada e classifique: é decisão ou é espera?", yt:"" },
+      { id:"m1e3", titulo:"Comparação te paralisa ou te move?", dur:"~17 min", desc:"Trata do impacto das redes sociais na autoestima. Distingue comparação produtiva de comparação paralisante.", desafio:"Encontre uma pessoa que você admira e descubra quanto tempo ela levou para chegar onde está.", yt:"" },
+      { id:"m1e4", titulo:"Seu ritmo não é lentidão", dur:"~16 min", desc:"Aborda trajetórias não-lineares e normaliza diferentes velocidades de desenvolvimento.", desafio:"Escreva 3 coisas que você já fez que antes não conseguia — prove para si mesmo que você se move.", yt:"" },
+    ]
+  },
+  {
+    id: "m2",
+    nome: "Para onde posso ir?",
+    sub: "Módulo 2 · Carreira e mundo do trabalho",
+    cor: "#F48028",
+    corClr: "#FEF0E4",
+    eps: [
+      { id:"m2e1", titulo:"O mundo do trabalho que ninguém te mostrou", dur:"~17 min", desc:"Apresenta profissões e áreas fora do radar do jovem. Expande o mapa de possibilidades.", desafio:"Pesquise 3 profissões que você nunca considerou e descubra o que fazem no dia a dia.", yt:"" },
+      { id:"m2e2", titulo:"O que é uma carreira hoje (e o que não é mais)", dur:"~15 min", desc:"Desmonta a ideia de carreira linear. Apresenta trajetórias reais de pessoas que criaram seus próprios caminhos.", desafio:"Encontre uma pessoa com uma trajetória não-convencional e entenda como ela chegou lá.", yt:"" },
+      { id:"m2e3", titulo:"Como testar uma carreira antes de decidir", dur:"~16 min", desc:"Formas concretas de explorar uma área sem precisar se comprometer: conversas, experiências curtas, conteúdo.", desafio:"Mande uma mensagem para alguém que trabalha em uma área que te interessa e faça uma pergunta.", yt:"" },
+      { id:"m2e4", titulo:"Como saber se uma direção faz sentido pra você", dur:"~18 min", desc:"Perguntas práticas para avaliar o alinhamento entre uma área e seu perfil — sem testes de vocação.", desafio:"Liste 2 áreas que você quer explorar mais e escreva por quê cada uma te atrai.", yt:"" },
+    ]
+  },
+  {
+    id: "m3",
+    nome: "Quem sou eu?",
+    sub: "Módulo 3 · Autoconhecimento como instrumento",
+    cor: "#FEED0D",
+    corClr: "#FFFDE6",
+    eps: [
+      { id:"m3e1", titulo:"O que te move sem ninguém pedir", dur:"~15 min", desc:"Convida o jovem a observar o que faz espontaneamente — comportamentos reais, não talentos abstratos.", desafio:"Liste 3 coisas que você faz sem que ninguém peça e que faria mesmo sem receber nada por isso.", yt:"" },
+      { id:"m3e2", titulo:"O que os outros enxergam em você", dur:"~16 min", desc:"O olhar externo como espelho de habilidades invisíveis — o que você não percebe em si mesmo.", desafio:"Pergunte para 2 pessoas: 'o que você acha que eu faço bem?' Anote as respostas.", yt:"" },
+      { id:"m3e3", titulo:"O que te esgota e o que te energiza", dur:"~17 min", desc:"Distingue atividades que consomem energia das que repõem. Critério relevante para escolhas profissionais.", desafio:"Durante 3 dias, anote o que te energizou e o que te esgotou em cada dia.", yt:"" },
+      { id:"m3e4", titulo:"Seu mapa pessoal", dur:"~18 min", desc:"Síntese do módulo. O jovem monta um painel com tudo que descobriu sobre si mesmo.", desafio:"Monte seu painel pessoal — pode ser no papel ou digital. Se quiser, poste nos stories como registro.", yt:"" },
+    ]
+  },
+  {
+    id: "m4",
+    nome: "Como começo?",
+    sub: "Módulo 4 · Próximos passos concretos",
+    cor: "#1A3A38",
+    corClr: "#E0F9F8",
+    eps: [
+      { id:"m4e1", titulo:"A diferença entre decidir e agir", dur:"~15 min", desc:"Aborda a tendência de confundir planejamento com progresso. Apresenta a ação mínima viável.", desafio:"Identifique uma ação que você tem adiado e reduza-a ao menor formato possível. Faça hoje.", yt:"" },
+      { id:"m4e2", titulo:"Como montar seu próximo passo sem precisar de tudo pronto", dur:"~17 min", desc:"Método simples de planejamento de curto prazo: o que explorar, quem pode ajudar, o que fazer essa semana.", desafio:"Preencha o mapa: 1 direção + 1 pessoa que pode te ajudar + 1 ação para essa semana.", yt:"" },
+      { id:"m4e3", titulo:"Como lidar com o medo de errar a escolha", dur:"~16 min", desc:"Trata do medo de se comprometer. Apresenta o conceito de escolha reversível versus irreversível.", desafio:"Identifique uma decisão que você está evitando. Avalie: ela é reversível ou não?", yt:"" },
+      { id:"m4e4", titulo:"Seu plano para os próximos 30 dias", dur:"~18 min", desc:"Episódio de encerramento. O jovem monta um plano concreto com 3 ações, 3 pessoas e 1 área para explorar.", desafio:"Escreva seu plano de 30 dias. Compartilhe com alguém de confiança como compromisso.", yt:"" },
+    ]
+  }
+];
+
+// ── ESTADO ──
+let epAtual = null;
+const STORAGE_KEY = "alicerce_progresso_v1";
+
+function carregarProgresso() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+}
+function salvarProgresso(p) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+}
+
+let progresso = carregarProgresso();
+
+// ── RENDER MÓDULOS ──
+function totalConcluidos() {
+  return Object.values(progresso).filter(Boolean).length;
+}
+
+function progressoModulo(mod) {
+  return mod.eps.filter(e => progresso[e.id]).length;
+}
+
+function renderModulos() {
+  const grid = document.getElementById("modulos-grid");
+  grid.innerHTML = "";
+
+  MODULOS.forEach(mod => {
+    const conc = progressoModulo(mod);
+    const total = mod.eps.length;
+    const pct = Math.round((conc / total) * 100);
+
+    const card = document.createElement("div");
+    card.className = "modulo-card";
+    card.id = "card-" + mod.id;
+
+    card.innerHTML = `
+      <div class="modulo-header" onclick="toggleModulo('${mod.id}')">
+        <div class="modulo-num" style="background:${mod.corClr};color:${mod.cor}">M${MODULOS.indexOf(mod)+1}</div>
+        <div class="modulo-info">
+          <div class="modulo-nome">${mod.nome}</div>
+          <div class="modulo-sub">${mod.sub}</div>
+        </div>
+        <div class="modulo-progresso">
+          <div class="modulo-progresso-label">${conc}/${total}</div>
+          <div class="modulo-progresso-bar">
+            <div class="modulo-progresso-fill" style="width:${pct}%;background:${mod.cor}"></div>
+          </div>
+        </div>
+        <div class="chevron">▾</div>
+      </div>
+      <div class="episodios-lista">
+        ${mod.eps.map(ep => `
+          <div class="ep-item ${progresso[ep.id] ? 'concluido' : ''} ${epAtual?.id === ep.id ? 'ativo' : ''}"
+               id="ep-${ep.id}"
+               onclick="abrirEpisodio('${mod.id}','${ep.id}')">
+            <div class="ep-check">${progresso[ep.id] ? '✓' : ''}</div>
+            <div class="ep-info">
+              <div class="ep-titulo">${ep.titulo}</div>
+              <div class="ep-meta">${ep.dur}</div>
+            </div>
+            <div class="ep-play">▶</div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  atualizarProgessoGeral();
+}
+
+function toggleModulo(modId) {
+  const card = document.getElementById("card-" + modId);
+  card.classList.toggle("aberto");
+}
+
+function abrirEpisodio(modId, epId) {
+  const mod = MODULOS.find(m => m.id === modId);
+  const ep = mod.eps.find(e => e.id === epId);
+  epAtual = { ...ep, modId, modNome: mod.nome, modCor: mod.cor };
+
+  // Atualizar player
+  const iframe = document.getElementById("yt-iframe");
+  if (ep.yt) {
+    iframe.src = `https://www.youtube.com/embed/${ep.yt}?rel=0&modestbranding=1`;
+  } else {
+    iframe.src = "";
+  }
+
+  document.getElementById("player-label").textContent = mod.nome;
+  document.getElementById("player-label").style.color = mod.cor;
+  document.getElementById("player-titulo").textContent = ep.titulo;
+  document.getElementById("player-desc").textContent = ep.desc;
+  document.getElementById("player-desafio").textContent = ep.desafio;
+
+  const btnConc = document.getElementById("btn-concluir");
+  if (progresso[ep.id]) {
+    btnConc.textContent = "✓ Concluído";
+    btnConc.disabled = true;
+  } else {
+    btnConc.textContent = "✓ Marcar como concluído";
+    btnConc.disabled = false;
+  }
+
+  // Próximo episódio
+  const allEps = MODULOS.flatMap(m => m.eps.map(e => ({ ...e, modId: m.id })));
+  const idx = allEps.findIndex(e => e.id === epId);
+  const btnProx = document.getElementById("btn-proximo");
+  if (idx < allEps.length - 1) {
+    const prox = allEps[idx + 1];
+    btnProx.style.display = "";
+    btnProx.onclick = () => abrirEpisodio(prox.modId, prox.id);
+  } else {
+    btnProx.style.display = "none";
+  }
+
+  // Mostrar player
+  document.getElementById("player-vazio").style.display = "none";
+  const pa = document.getElementById("player-ativo");
+  pa.style.display = "block";
+  pa.classList.add("visivel");
+
+  // Se vídeo sem ID: mostrar aviso
+  if (!ep.yt) {
+    iframe.src = "about:blank";
+  }
+
+  // Scroll para player em mobile
+  if (window.innerWidth < 768) {
+    document.querySelector(".player-area").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  renderModulos();
+  // Manter módulo aberto
+  const card = document.getElementById("card-" + modId);
+  if (!card.classList.contains("aberto")) card.classList.add("aberto");
+}
+
+function marcarConcluido() {
+  if (!epAtual) return;
+  progresso[epAtual.id] = true;
+  salvarProgresso(progresso);
+
+  const btn = document.getElementById("btn-concluir");
+  btn.textContent = "✓ Concluído";
+  btn.disabled = true;
+
+  mostrarToast("✓ Episódio concluído!");
+  renderModulos();
+  // Manter aberto
+  const card = document.getElementById("card-" + epAtual.modId);
+  if (!card.classList.contains("aberto")) card.classList.add("aberto");
+}
+
+function atualizarProgessoGeral() {
+  const total = MODULOS.reduce((a, m) => a + m.eps.length, 0);
+  const conc = totalConcluidos();
+  const pct = Math.round((conc / total) * 100);
+  document.getElementById("txt-progresso").textContent = `${conc} de ${total} episódios`;
+  document.getElementById("fill-geral").style.width = pct + "%";
+}
+
+let toastTimer;
+function mostrarToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("visivel");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("visivel"), 2800);
+}
+
+// Bind botão concluir
+document.getElementById("btn-concluir").addEventListener("click", marcarConcluido);
+
+// Init
+renderModulos();
+// Abrir M1 por padrão
+document.getElementById("card-m1").classList.add("aberto");
+</script>
+</body>
+</html>
