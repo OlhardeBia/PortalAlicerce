@@ -523,6 +523,10 @@
   .nav-aba.ativa { color: var(--laranja); border-bottom-color: var(--laranja); }
   .nav-aba .aba-icon { font-size: 1rem; }
 
+  /* ── SEÇÃO ALICERCE ── */
+  .secao-alicerce { display: none; }
+  .secao-alicerce.visivel { display: block; padding: 2.5rem 0; }
+
   /* ── SEÇÃO TRECHOS ── */
   .secao-trechos { display: none; }
   .secao-trechos.visivel { display: block; }
@@ -693,9 +697,39 @@
   <button class="nav-aba" id="aba-trechos" onclick="mudarAba('trechos')">
     <span class="aba-icon">▶</span> Trechos
   </button>
+  <button class="nav-aba" id="aba-alicerce" onclick="mudarAba('alicerce')">
+    <span class="aba-icon">🎓</span> Alicerce
+  </button>
 </nav>
 
-<!-- SEÇÃO TRECHOS -->
+<!-- SEÇÃO ALICERCE -->
+<div class="secao-alicerce" id="secao-alicerce">
+  <div class="container">
+    <p class="secao-titulo" style="margin-bottom:0.5rem">O Programa</p>
+    <h2 style="font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:800;color:var(--cinza-esc);margin-bottom:0.5rem;letter-spacing:-0.02em">Alicerce — Olhar de Bia</h2>
+    <p style="font-size:0.95rem;color:var(--cinza-med);font-weight:300;line-height:1.6;max-width:600px;margin-bottom:2rem">Conheça o programa que transformou a vida de jovens através da educação, do pertencimento e da fé. Assista à formatura de uma das edições e veja de perto o que o Alicerce constrói.</p>
+
+    <div style="background:var(--branco);border:1.5px solid var(--borda);border-radius:20px;overflow:hidden;max-width:820px">
+      <div class="video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/28oxbM-gsl0?rel=0&modestbranding=1"
+          allowfullscreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+        </iframe>
+      </div>
+      <div style="padding:1.4rem 1.6rem;border-top:1px solid var(--borda)">
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.4rem">Formatura</div>
+        <div style="font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:var(--cinza-esc);margin-bottom:0.4rem">Formatura Alicerce — Olhar de Bia</div>
+        <div style="font-size:0.85rem;color:var(--cinza-med);font-weight:300;line-height:1.6">Um momento de celebração e reconhecimento dos jovens que completaram o programa. Veja o impacto real do Alicerce na vida de cada um deles.</div>
+        <div style="margin-top:1.1rem">
+          <a href="https://olhardebia.org.br/#10" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration:none">
+            Conheça o programa completo ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="secao-trechos" id="secao-trechos">
   <div class="trechos-layout">
     <!-- Feed scroll -->
@@ -800,22 +834,31 @@ const TRECHOS = [
 
 // ── NAVEGAÇÃO POR ABAS ──
 function mudarAba(aba) {
-  const trilha   = document.getElementById("secao-trilha");
-  const trechos  = document.getElementById("secao-trechos");
-  const btnTrilha = document.getElementById("aba-trilha");
-  const btnTrechos = document.getElementById("aba-trechos");
+  const trilha    = document.getElementById("secao-trilha");
+  const trechos   = document.getElementById("secao-trechos");
+  const alicerce  = document.getElementById("secao-alicerce");
+  const btnTrilha   = document.getElementById("aba-trilha");
+  const btnTrechos  = document.getElementById("aba-trechos");
+  const btnAlicerce = document.getElementById("aba-alicerce");
+
+  // Esconde tudo
+  trilha.classList.add("oculta");
+  trechos.classList.remove("visivel");
+  alicerce.classList.remove("visivel");
+  btnTrilha.classList.remove("ativa");
+  btnTrechos.classList.remove("ativa");
+  btnAlicerce.classList.remove("ativa");
 
   if (aba === "trilha") {
     trilha.classList.remove("oculta");
-    trechos.classList.remove("visivel");
     btnTrilha.classList.add("ativa");
-    btnTrechos.classList.remove("ativa");
-  } else {
-    trilha.classList.add("oculta");
+  } else if (aba === "trechos") {
     trechos.classList.add("visivel");
-    btnTrilha.classList.remove("ativa");
     btnTrechos.classList.add("ativa");
     renderTrechos();
+  } else if (aba === "alicerce") {
+    alicerce.classList.add("visivel");
+    btnAlicerce.classList.add("ativa");
   }
 }
 
